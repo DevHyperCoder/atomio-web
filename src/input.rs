@@ -34,9 +34,9 @@ pub fn text_input(props: &Props) -> Html {
     {
         let input_ref = input_ref.clone();
         use_effect_with_deps(
-            move |b| {
-                let a = b.cast::<HtmlInputElement>().unwrap();
-                a.focus().unwrap();
+            move |node_ref| {
+                let input_elem = node_ref.cast::<HtmlInputElement>().unwrap();
+                input_elem.focus().unwrap();
 
                 // Cleanup func
                 || ()
@@ -58,8 +58,7 @@ pub fn text_input(props: &Props) -> Html {
         Callback::from(move |e: FocusEvent| {
             e.prevent_default();
 
-            let a = (*text_input_value).clone();
-            on_change.emit(a)
+            on_change.emit((*text_input_value).clone())
         })
     };
 

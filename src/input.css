@@ -6,7 +6,7 @@ body {
     @apply bg-lightPurple w-screen m-0;
 } 
 
-.asdf::after {
+.bar-graph::after {
     @apply text-xs;
     content: ' ' attr(data-element) ' (' attr(data-comp) '%) ';
 }
