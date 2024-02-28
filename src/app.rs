@@ -6,8 +6,8 @@ use crate::stats::Stats;
 
 #[function_component]
 pub fn App() -> Html {
-    let chem_formula:UseStateHandle<String> = use_state(|| "".into());
-    let chem_formula_error:UseStateHandle<String> = use_state(|| "".into());
+    let chem_formula: UseStateHandle<String> = use_state(|| "".into());
+    let chem_formula_error: UseStateHandle<String> = use_state(|| "".into());
     let parsed: UseStateHandle<Option<Parsed>> = use_state(|| None);
 
     let on_change = {
@@ -16,7 +16,7 @@ pub fn App() -> Html {
 
         Callback::from(move |a: String| {
             let formula_str = a.as_str();
-            let tp: Result<Parsed,String> = formula_str.try_into();
+            let tp: Result<Parsed, String> = formula_str.try_into();
 
             match tp {
                 Ok(p) => {
@@ -33,7 +33,7 @@ pub fn App() -> Html {
 
     let stats = match &(*parsed) {
         None => html!(<> </>),
-        Some(parsed) => html!(<Stats parsed={parsed.clone()} />)
+        Some(parsed) => html!(<Stats parsed={parsed.clone()} />),
     };
 
     html!(<>

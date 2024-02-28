@@ -3,8 +3,8 @@ mod data;
 
 mod app;
 mod input;
-mod utils;
 mod stats;
+mod utils;
 
 use crate::app::App;
 

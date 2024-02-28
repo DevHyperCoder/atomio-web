@@ -5,9 +5,9 @@ use yew::prelude::*;
 
 use crate::utils::{calculate_mass, get_mass_composition};
 
-#[derive(Debug,Clone,Properties,PartialEq)]
+#[derive(Debug, Clone, Properties, PartialEq)]
 pub struct StatsProps {
-    pub parsed: Parsed
+    pub parsed: Parsed,
 }
 
 #[function_component]
@@ -17,15 +17,14 @@ pub fn Stats(props: &StatsProps) -> Html {
     let mass = calculate_mass(&parsed);
     let omps = parsed.root_unit.get_composition();
 
-    let sum: u32 = omps.iter().map(|(_,v)| v).sum();
+    let sum: u32 = omps.iter().map(|(_, v)| v).sum();
 
     let mut comps = HashMap::new();
-    for (k,val) in omps {
+    for (k, val) in omps {
         comps.insert(k, (val as f64) * 100. / (sum as f64));
     }
 
     let mass_composition = get_mass_composition(&parsed);
-
 
     html!(
         <section class="mt-5">
