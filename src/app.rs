@@ -37,7 +37,7 @@ pub fn App() -> Html {
     };
 
     html!(<>
-        <main class="w-3/4 h-full mx-auto">
+        <main class="lg:mx-48 md:mx-24 mx-2 h-full">
             <h1 class="text-slate-900 font-black text-3xl text-center my-5">{"ATOMIO - Molecular Mass and Composition"}</h1>
             <TextInput placeholder={"Enter chemical formula..."} 
                 label={"Chemical Formula:"}
