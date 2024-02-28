@@ -42,10 +42,12 @@ pub fn text_input(props: &Props) -> Html {
         text_input_value.set(get_value_from_input_event(input_event));
     })};
 
-    let onclick={
+    let onsubmit = {
         let text_input_value = text_input_value.clone();
 
-        Callback::from(move |_| {
+        Callback::from(move |e: FocusEvent| {
+            e.prevent_default();
+
             let a = (*text_input_value).clone();
             on_change.emit(a)
         })
@@ -54,15 +56,15 @@ pub fn text_input(props: &Props) -> Html {
     html! {
         <div class="flex gap-1 flex-col">
             <label class="text-slate-800 font-bold text-sm">{label}</label>
-            <div class="w-full flex drop-shadow-md items-center bg-white">
+            <form {onsubmit} class="w-full flex drop-shadow-md items-center bg-white">
                 <input 
                     ref={input_ref.clone()}
                     class="text-lg block w-full px-2 font-bold placeholder:text-slate-500 py-2 border-0 border-b-2 border-white focus:ring-0 focus:border-black "
                     type="text" {placeholder} value={(*text_input_value).clone()} {oninput} />
-                <button {onclick}>
+                <button type="submit">
                     <img class="h-8 mr-2" src="res/search.svg" alt="search img" />
                 </button>
-            </div>
+            </form>
             <p class="text-sm font-semibold text-red-500">{error_msg}</p>
         </div>
     }
